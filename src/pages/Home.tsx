@@ -197,6 +197,44 @@ export function Home() {
         </div>
       </section>
 
+
+      {/* Ubicación Google Maps */}
+      <section className="section section--location">
+        <FadeIn className="container section-header">
+          <span className="eyebrow">Ubicación</span>
+          <h2 className="section-title">¿Dónde está la casa?</h2>
+          <p className="section-body section-body--center">
+            Casa Castro está ubicada en Melgar, Tolima. Consulta la ubicación exacta en el mapa:
+          </p>
+        </FadeIn>
+        <FadeIn delay={0.1} className="container">
+          <div style={{ maxWidth: 900, margin: '0 auto' }}>
+            <div style={{ width: '100%', height: '350px', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 2px 16px #0001' }}>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3771.125827478176!2d-74.69534238077324!3d4.171814663385928!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3ed951f5b6116d%3A0xbab3cc95e9522856!2sCONDOMINIO%20COLINAS%20DE%20MARANTA%20MELGAR!5e0!3m2!1ses-419!2sco!4v1779072983707!5m2!1ses-419!2sco"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen={true}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Ubicación Casa Castro en Google Maps"
+              ></iframe>
+            </div>
+            <div style={{ textAlign: 'center', marginTop: 12 }}>
+              <a
+                href="https://maps.app.goo.gl/uJDg5qDJE2pUbNEB6"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn--outline"
+              >
+                Ver en Google Maps
+              </a>
+            </div>
+          </div>
+        </FadeIn>
+      </section>
+
       <TourVideo />
 
       <section className="section cta-section">

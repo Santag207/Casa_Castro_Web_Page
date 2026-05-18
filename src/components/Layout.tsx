@@ -32,19 +32,9 @@ export function Layout() {
       <JsonLd />
       <Header />
       <main className="main-content">
-        <AnimatePresence mode="wait" custom={direction} initial={false}>
-          <motion.div
-            key={location.pathname}
-            className="page-shell"
-            custom={direction}
-            variants={pageVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-          >
-            {outlet}
-          </motion.div>
-        </AnimatePresence>
+        <div className="page-shell">
+          {outlet}
+        </div>
       </main>
       <Footer />
       <WhatsAppFloat />
