@@ -33,7 +33,7 @@ export function Layout() {
       <main className="main-content">
         <AnimatePresence mode="wait" custom={direction} initial={false}>
           <motion.div
-            key={location.pathname}
+            key={location.key}
             className="page-shell"
             custom={direction}
             variants={pageVariants}
