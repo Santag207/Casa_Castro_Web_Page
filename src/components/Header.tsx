@@ -30,24 +30,45 @@ export function Header() {
         animate={{ paddingBlock: scrolled ? "0.75rem" : "1.25rem" }}
         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
       >
-        <Link to="/" className="header__brand">
+        <a
+          href="/"
+          className="header__brand"
+          onClick={(e) => {
+            e.preventDefault();
+            window.location.href = "/";
+          }}
+        >
           <span className="header__name">{SITE.name}</span>
           <span className="header__tag">{SITE.tagline}</span>
-        </Link>
+        </a>
 
         <nav className="header__nav" aria-label="Principal">
-          {NAV_LINKS.map((link) => (
-            <NavLink
-              key={link.to}
-              to={link.to}
-              end={link.to === "/"}
-              className={({ isActive }) =>
-                `header__link${isActive ? " header__link--active" : ""}`
-              }
-            >
-              {link.label}
-            </NavLink>
-          ))}
+          {NAV_LINKS.map((link) =>
+            link.to === "/" ? (
+              <a
+                key={link.to}
+                href="/"
+                className="header__link"
+                onClick={e => {
+                  e.preventDefault();
+                  window.location.href = "/";
+                }}
+              >
+                {link.label}
+              </a>
+            ) : (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                end={false}
+                className={({ isActive }) =>
+                  `header__link${isActive ? " header__link--active" : ""}`
+                }
+              >
+                {link.label}
+              </NavLink>
+            )
+          )}
         </nav>
 
         <div className="header__actions">
