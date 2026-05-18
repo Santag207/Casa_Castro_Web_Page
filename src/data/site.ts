@@ -5,9 +5,13 @@ export const SITE = {
   phone: "+57 314 271 0256",
   phoneRaw: "573142710256",
   email: "reservas@casacastrocarrero.com",
-  maxGuests: 13,
+  maxGuests: 20,
   rooms: 4,
   beds: 13,
+  baseGuests: 12,
+  basePrice: 800000,
+  extraPersonPrice: 40000,
+  cleaningFee: 60000,
 } as const;
 
 export const NAV_LINKS = [

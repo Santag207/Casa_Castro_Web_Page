@@ -48,6 +48,12 @@ export function buildReservationMessage(
   data: ReservationForm,
   cartLines?: CartLineWithProduct[]
 ): string {
+  const totalGuests = Number(data.adultos) + Number(data.ninos);
+  const extraGuestsCount = Math.max(0, totalGuests - SITE.baseGuests);
+  const baseTotal = data.noches * SITE.basePrice;
+  const extraTotal = extraGuestsCount * SITE.extraPersonPrice * data.noches;
+  const reservationSubtotal = baseTotal + extraTotal + SITE.cleaningFee;
+
   const lines = [
     `🏡 *Nueva reserva — ${SITE.name}*`,
     "",
@@ -65,8 +71,16 @@ export function buildReservationMessage(
     `• Sección: ${sectionLabel(data.seccion)}`,
     `• Adultos: ${data.adultos}`,
     `• Niños: ${data.ninos}`,
-    `• Total huéspedes: ${data.adultos + data.ninos}`,
-  ];
+    `• Total huéspedes: ${totalGuests}`,
+    "",
+    "💰 *Desglose estimado*",
+    `• Estadía (${data.noches} n.): ${formatCOP(baseTotal)}`,
+    extraGuestsCount > 0 ? `• Extra (${extraGuestsCount} pax): ${formatCOP(extraTotal)}` : null,
+    `• Aseo (obligatorio): ${formatCOP(SITE.cleaningFee)}`,
+    `• *Subtotal estadía: ${formatCOP(reservationSubtotal)}*`,
+  ].filter(Boolean) as string[];
+
+  let grandTotal = reservationSubtotal;
 
   if (cartLines && cartLines.length > 0) {
     lines.push("", "🛒 *Extras solicitados*");
@@ -79,7 +93,11 @@ export function buildReservationMessage(
       (s, l) => s + l.product.price * l.quantity,
       0
     );
-    lines.push(`• Subtotal extras (ref.): ${formatCOP(sub)}`);
+    grandTotal += sub;
+    lines.push(`• Subtotal extras: ${formatCOP(sub)}`);
+    lines.push("", `💵 *TOTAL ESTIMADO: ${formatCOP(grandTotal)}*`);
+  } else {
+    lines.push("", `💵 *TOTAL ESTIMADO: ${formatCOP(grandTotal)}*`);
   }
 
   if (data.mensaje?.trim()) {

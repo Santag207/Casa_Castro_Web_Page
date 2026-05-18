@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { useLocation, useOutlet } from "react-router-dom";
+import { useLocation, Outlet } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
@@ -11,7 +11,6 @@ import { getRouteIndex, pageVariants } from "../lib/pageTransitions";
 
 export function Layout() {
   const location = useLocation();
-  const outlet = useOutlet();
   usePageSEO();
 
   const prevIndex = useRef(getRouteIndex(location.pathname));
@@ -42,7 +41,7 @@ export function Layout() {
             animate="animate"
             exit="exit"
           >
-            {outlet}
+            <Outlet />
           </motion.div>
         </AnimatePresence>
       </main>

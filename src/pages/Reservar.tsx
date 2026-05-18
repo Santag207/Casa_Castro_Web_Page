@@ -1,6 +1,6 @@
 import { useMemo, useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
-import { MessageCircle, Phone, ShoppingBag } from "lucide-react";
+import { MessageCircle, Phone, ShoppingBag, Sparkles } from "lucide-react";
 import { PageHero } from "../components/PageHero";
 import { FadeIn } from "../components/FadeIn";
 import { useCart } from "../context/CartContext";
@@ -40,7 +40,7 @@ function formatSummaryDate(iso: string): string {
 }
 
 export function Reservar() {
-  const { lines, formatCOP } = useCart();
+  const { lines, formatCOP, subtotal: cartSubtotal } = useCart();
   const [form, setForm] = useState<ReservationInput>(defaultValues);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
@@ -49,6 +49,26 @@ export function Reservar() {
     () => nightsBetween(form.checkIn, form.checkOut),
     [form.checkIn, form.checkOut]
   );
+
+  const totalGuests = Number(form.adultos) + Number(form.ninos);
+  const extraGuestsCount = Math.max(0, totalGuests - SITE.baseGuests);
+
+  const pricing = useMemo(() => {
+    if (!nights || nights <= 0) return null;
+
+    const baseTotal = nights * SITE.basePrice;
+    const extraTotal = extraGuestsCount * SITE.extraPersonPrice * nights;
+    const cleaningFee = SITE.cleaningFee;
+    const reservationSubtotal = baseTotal + extraTotal + cleaningFee;
+
+    return {
+      baseTotal,
+      extraTotal,
+      cleaningFee,
+      reservationSubtotal,
+      grandTotal: reservationSubtotal + cartSubtotal,
+    };
+  }, [nights, extraGuestsCount, cartSubtotal]);
 
   const sectionLabel =
     SECTION_OPTIONS.find((s) => s.value === form.seccion)?.label ?? "—";
@@ -193,7 +213,7 @@ export function Reservar() {
                       id="adultos"
                       type="number"
                       min={1}
-                      max={13}
+                      max={SITE.maxGuests}
                       value={form.adultos}
                       onChange={(e) => update("adultos", e.target.value)}
                       className={errors.adultos ? "input--error" : ""}
@@ -208,7 +228,7 @@ export function Reservar() {
                       id="ninos"
                       type="number"
                       min={0}
-                      max={12}
+                      max={SITE.maxGuests - 1}
                       value={form.ninos}
                       onChange={(e) => update("ninos", e.target.value)}
                       className={errors.ninos ? "input--error" : ""}
@@ -297,12 +317,40 @@ export function Reservar() {
                 </div>
               </dl>
 
+              {pricing && (
+                <div className="reserve-summary__pricing">
+                  <h4>Desglose de reserva</h4>
+                  <ul className="reserve-summary__breakdown">
+                    <li>
+                      <span>Estadía base ({nights} noches)</span>
+                      <span>{formatCOP(pricing.baseTotal)}</span>
+                    </li>
+                    {extraGuestsCount > 0 && (
+                      <li>
+                        <span>
+                          Personas extra ({extraGuestsCount} x {nights} noches)
+                        </span>
+                        <span>{formatCOP(pricing.extraTotal)}</span>
+                      </li>
+                    )}
+                    <li>
+                      <span>Aseo obligatorio (único)</span>
+                      <span>{formatCOP(pricing.cleaningFee)}</span>
+                    </li>
+                    <li className="reserve-summary__subtotal">
+                      <span>Subtotal estadía</span>
+                      <strong>{formatCOP(pricing.reservationSubtotal)}</strong>
+                    </li>
+                  </ul>
+                </div>
+              )}
+
               {lines.length > 0 && (
                 <div className="reserve-summary__extras">
                   <h4>
                     <ShoppingBag size={16} /> Extras en carrito
                   </h4>
-                  <ul>
+                  <ul className="reserve-summary__breakdown">
                     {lines.map((l) => (
                       <li key={l.productId}>
                         <span>
@@ -311,10 +359,27 @@ export function Reservar() {
                         <span>{formatCOP(l.product.price * l.quantity)}</span>
                       </li>
                     ))}
+                    <li className="reserve-summary__subtotal">
+                      <span>Subtotal extras</span>
+                      <strong>{formatCOP(cartSubtotal)}</strong>
+                    </li>
                   </ul>
                   <Link to="/tienda" className="link-arrow">
                     Editar en tienda
                   </Link>
+                </div>
+              )}
+
+              {pricing && (
+                <div className="reserve-summary__total">
+                  <div className="reserve-summary__grand-total">
+                    <span>Total estimado</span>
+                    <strong>{formatCOP(pricing.grandTotal)}</strong>
+                  </div>
+                  <p className="reserve-summary__note">
+                    <Sparkles size={14} />
+                    Sujeto a disponibilidad y confirmación.
+                  </p>
                 </div>
               )}
             </div>
