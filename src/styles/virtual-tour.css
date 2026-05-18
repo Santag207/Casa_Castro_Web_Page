@@ -1,0 +1,319 @@
+/* Recorrido virtual interactivo */
+.virtual-tour {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-black);
+  box-shadow: var(--shadow-lg);
+  background: var(--color-sea-deep);
+}
+
+.virtual-tour--compact .virtual-tour__viewport {
+  min-height: min(58vh, 520px);
+}
+
+.virtual-tour__viewport {
+  position: relative;
+  min-height: min(72vh, 640px);
+  overflow: hidden;
+  cursor: crosshair;
+}
+
+.virtual-tour__scene {
+  position: absolute;
+  inset: -5%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.15s ease-out;
+  will-change: transform;
+}
+
+.virtual-tour__vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 90% 80% at 50% 50%,
+    transparent 30%,
+    rgba(10, 10, 10, 0.45) 100%
+  );
+  z-index: 1;
+}
+
+.virtual-tour__hotspot {
+  position: absolute;
+  z-index: 3;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.virtual-tour__hotspot-pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--color-sand-accent);
+  animation: hotspot-pulse 2s ease-out infinite;
+}
+
+.virtual-tour__hotspot-core {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-sand-accent);
+  box-shadow: 0 0 20px var(--color-sand-accent);
+  border: 2px solid var(--color-black);
+}
+
+.virtual-tour__hotspot-label {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  background: rgba(10, 10, 10, 0.75);
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition);
+}
+
+.virtual-tour__hotspot:hover .virtual-tour__hotspot-label {
+  opacity: 1;
+}
+
+@keyframes hotspot-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.virtual-tour__hud-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 4;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1.25rem;
+  background: linear-gradient(to bottom, rgba(10, 10, 10, 0.6), transparent);
+}
+
+.virtual-tour__scene-info {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  color: var(--color-white);
+  max-width: 70%;
+}
+
+.virtual-tour__scene-info svg {
+  color: var(--color-sand-accent);
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+.virtual-tour__scene-info strong {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.virtual-tour__scene-info span {
+  font-size: 0.82rem;
+  opacity: 0.8;
+}
+
+.virtual-tour__hud-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.virtual-tour__hud-actions button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(10, 10, 10, 0.5);
+  color: var(--color-white);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.virtual-tour__hud-actions button:hover {
+  background: var(--color-sea-deep);
+  border-color: var(--color-sand-accent);
+}
+
+.virtual-tour__hud-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 4;
+  padding: 1rem 1.25rem 1.25rem;
+  background: linear-gradient(to top, rgba(10, 10, 10, 0.75), transparent);
+}
+
+.virtual-tour__hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 0.75rem;
+}
+
+.virtual-tour__thumbs {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+  scrollbar-width: thin;
+}
+
+.virtual-tour__thumb {
+  flex: 0 0 auto;
+  width: 72px;
+  text-align: center;
+  opacity: 0.65;
+  transition: var(--transition);
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.virtual-tour__thumb img {
+  width: 72px;
+  height: 48px;
+  object-fit: cover;
+}
+
+.virtual-tour__thumb span {
+  display: block;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-white);
+  padding: 0.25rem;
+}
+
+.virtual-tour__thumb--active,
+.virtual-tour__thumb:hover {
+  opacity: 1;
+  border-color: var(--color-sand-accent);
+}
+
+.virtual-tour__expand {
+  text-align: center;
+  padding: 1.25rem;
+  background: var(--color-sand);
+}
+
+.virtual-tour-page__note {
+  margin-top: 1.5rem;
+  text-align: center;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.virtual-tour-page__note a {
+  color: var(--color-sea-deep);
+  font-weight: 600;
+  border-bottom: 1px solid var(--color-sand-accent);
+}
+
+.virtual-tour--fs .virtual-tour__viewport {
+  min-height: 100vh;
+}
+
+/* Video player */
+.video-section__header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.video-player {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-black);
+  box-shadow: var(--shadow-lg);
+  aspect-ratio: 16 / 9;
+  background: var(--color-black);
+}
+
+.video-player__media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-player__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(10, 10, 10, 0.5) 0%,
+    transparent 40%
+  );
+  pointer-events: none;
+}
+
+.video-player__controls {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.75rem;
+  z-index: 2;
+}
+
+.video-player__btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(10, 10, 10, 0.55);
+  color: var(--color-white);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  backdrop-filter: blur(8px);
+}
+
+.video-player__btn--main {
+  width: 56px;
+  height: 56px;
+  background: var(--color-sand-accent);
+  color: var(--color-black);
+  border-color: var(--color-black);
+}
+
+.video-player__btn:hover {
+  transform: scale(1.08);
+}

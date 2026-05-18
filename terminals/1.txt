@@ -1,0 +1,9 @@
+---
+pid: 20532
+cwd: |
+  C:\Users\santi
+---
+PS C:\Users\santi>
+ *  History restored 
+
+PS C:\Users\santi>

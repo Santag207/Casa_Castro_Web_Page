@@ -1,0 +1,6 @@
+---
+pid: 17004
+cwd: |
+  C:\Users\santi
+---
+PS C:\Users\santi>
