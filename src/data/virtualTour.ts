@@ -41,7 +41,7 @@ export const TOUR_SCENES: TourScene[] = [
   {
     id: "sala",
     name: "Sala de estar",
-    description: "Amplio espacio para reunir a familia y amigos.",
+    description: "Espacio para reunir a familia y amigos.",
     image:
       "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1920&q=85",
     hotspots: [
@@ -57,18 +57,6 @@ export const TOUR_SCENES: TourScene[] = [
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=85",
     hotspots: [
       { id: "c-sala", label: "Volver a la sala", targetSceneId: "sala", x: 20, y: 50 },
-      { id: "c-comedor", label: "Comedor", targetSceneId: "comedor", x: 65, y: 48 },
-    ],
-  },
-  {
-    id: "comedor",
-    name: "Comedor",
-    description: "Mesa amplia para compartir en grupo.",
-    image:
-      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1920&q=85",
-    hotspots: [
-      { id: "co-cocina", label: "Cocina", targetSceneId: "cocina", x: 28, y: 52 },
-      { id: "co-pool", label: "Terraza / piscina", targetSceneId: "piscina", x: 88, y: 40 },
     ],
   },
   {

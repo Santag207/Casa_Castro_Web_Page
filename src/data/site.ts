@@ -5,9 +5,9 @@ export const SITE = {
   phone: "+57 314 271 0256",
   phoneRaw: "573142710256",
   email: "reservas@casacastrocarrero.com",
-  maxGuests: 20,
+  maxGuests: 17,
   rooms: 4,
-  beds: 13,
+  beds: 15,
   baseGuests: 12,
   basePrice: 800000,
   extraPersonPrice: 40000,
@@ -46,7 +46,7 @@ export const AMENITIES_HOME = [
   { icon: "bbq", title: "Zona BBQ" },
   { icon: "ac", title: "Aire Acondicionado" },
   { icon: "wifi", title: "WiFi" },
-  { icon: "parking", title: "Parqueadero" },
+  { icon: "parking", title: "Parqueadero privado" },
   { icon: "kitchen", title: "Cocina Equipada" },
 ] as const;
 
@@ -63,7 +63,7 @@ export const AMENITIES_FULL = [
   {
     icon: "bbq",
     title: "Zona BBQ",
-    desc: "Asador con mesa amplia bajo techo para cenas al aire libre.",
+    desc: "Asador con mesa bajo techo para cenas al aire libre.",
     category: "exterior" as const,
     featured: true,
     image:
@@ -97,15 +97,6 @@ export const AMENITIES_FULL = [
       "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80",
   },
   {
-    icon: "dining",
-    title: "Comedor",
-    desc: "Comedor amplio para compartir las comidas.",
-    category: "interior" as const,
-    featured: false,
-    image:
-      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80",
-  },
-  {
     icon: "garden",
     title: "Zonas Verdes",
     desc: "Áreas exteriores con vegetación y palmeras.",
@@ -133,7 +124,7 @@ export const AMENITIES_FULL = [
   },
   {
     icon: "parking",
-    title: "Parqueadero",
+    title: "Parqueadero privado",
     desc: "Estacionamiento privado dentro de la propiedad.",
     category: "exterior" as const,
     featured: false,
@@ -164,8 +155,8 @@ export const ROOMS = [
     title: "Casa principal",
     description:
       "Una cama doble y habitaciones con literas perfectas para grupos grandes o familias numerosas.",
-    beds: "1 cama doble + literas",
-    capacity: "7 pax",
+    beds: "1 cama doble + 8 camas sencillas",
+    capacity: "10 pax",
     climate: "A/A",
     image:
       "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=900&q=80",
@@ -181,9 +172,9 @@ export const ROOMS = [
     section: "Sección 2",
     title: "Anexo privado",
     description:
-      "Dos camas dobles y un camarote (2 camas) — ideal para parejas o familias que buscan más independencia.",
-    beds: "2 camas dobles + 1 camarote",
-    capacity: "6 pax",
+      "Una cama doble y cinco camas sencillas — ideal para parejas o familias que buscan más independencia.",
+    beds: "1 cama doble + 5 camas sencillas",
+    capacity: "7 pax",
     climate: "A/A",
     image:
       "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=900&q=80",
@@ -209,7 +200,7 @@ export const GALLERY = [
   },
   {
     src: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80",
-    alt: "Sala de estar amplia",
+    alt: "Sala de estar confortable",
     category: "Interior",
   },
   {
@@ -226,11 +217,6 @@ export const GALLERY = [
     src: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&q=80",
     alt: "Zona BBQ al aire libre",
     category: "BBQ",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80",
-    alt: "Comedor familiar",
-    category: "Comedor",
   },
   {
     src: "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&q=80",

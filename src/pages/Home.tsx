@@ -83,8 +83,8 @@ export function Home() {
             </h2>
             <p className="section-body">
               Dos secciones independientes, 4 habitaciones con aire acondicionado,
-              cocina completa, sala de estar y un amplio espacio exterior con
-              piscina, BBQ y parqueadero. Todo cerrado y privado para que tu única
+              cocina completa, sala de estar y un espacio exterior con
+              piscina, BBQ y parqueadero privado. Todo cerrado y privado para que tu única
               preocupación sea descansar.
             </p>
           </FadeIn>

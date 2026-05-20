@@ -6,7 +6,7 @@ const lodgingSchema = {
   "@type": "LodgingBusiness",
   name: SITE.name,
   description:
-    "Casa vacacional privada en Melgar, Tolima, con piscina, zona BBQ y capacidad para hasta 13 huéspedes.",
+    "Casa vacacional privada en Melgar, Tolima, con piscina, zona BBQ y capacidad para hasta 17 huéspedes.",
   url: SITE_URL,
   telephone: SITE.phone,
   email: SITE.email,
@@ -25,7 +25,7 @@ const lodgingSchema = {
   amenityFeature: [
     { "@type": "LocationFeatureSpecification", name: "Piscina privada", value: true },
     { "@type": "LocationFeatureSpecification", name: "WiFi", value: true },
-    { "@type": "LocationFeatureSpecification", name: "Parqueadero", value: true },
+    { "@type": "LocationFeatureSpecification", name: "Parqueadero privado", value: true },
     { "@type": "LocationFeatureSpecification", name: "Aire acondicionado", value: true },
   ],
   numberOfRooms: SITE.rooms,

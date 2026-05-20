@@ -9,7 +9,7 @@ export function Footer() {
           <h3 className="footer__title">{SITE.name}</h3>
           <p className="footer__desc">
             Una casa vacacional privada para vivir Melgar como en casa: piscina,
-            BBQ, espacios amplios y total tranquilidad.
+            BBQ, espacios confortables y total tranquilidad.
           </p>
         </div>
 
