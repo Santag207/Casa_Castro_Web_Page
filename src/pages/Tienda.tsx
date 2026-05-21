@@ -7,6 +7,7 @@ import {
   formatCOP,
   type ShopCategory,
 } from "../data/shop";
+import { IMAGES } from "../data/images";
 import { PageHero } from "../components/PageHero";
 import { FadeIn } from "../components/FadeIn";
 import { useCart } from "../context/CartContext";
@@ -35,7 +36,7 @@ export function Tienda() {
         label="Tienda de extras"
         title="Personaliza tu estadía"
         subtitle="Agrega experiencias, gastronomía y confort a tu reserva. El carrito se integra con tu solicitud por WhatsApp."
-        image="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1920&q=85"
+        image={IMAGES.pageHero.tienda}
       />
 
       <section className="section section--sand">

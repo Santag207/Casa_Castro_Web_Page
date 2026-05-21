@@ -7,6 +7,7 @@ import {
   AMENITY_CATEGORIES,
   type AmenityCategory,
 } from "../data/site";
+import { IMAGES } from "../data/images";
 import { PageHero } from "../components/PageHero";
 import { FadeIn, StaggerContainer, StaggerItem } from "../components/FadeIn";
 import { AmenityIcon } from "../components/AmenityIcon";
@@ -27,7 +28,7 @@ export function Amenidades() {
         label="Experiencia"
         title="Amenidades"
         subtitle="Cada detalle pensado para que solo te preocupes por descansar y disfrutar."
-        image="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=85"
+        image={IMAGES.pageHero.amenidades}
       />
 
       <section className="amenities-showcase">

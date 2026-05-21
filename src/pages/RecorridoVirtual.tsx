@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { FadeIn } from "../components/FadeIn";
 import { VirtualTour } from "../components/VirtualTour";
 import { PageHero } from "../components/PageHero";
+import { IMAGES } from "../data/images";
 
 export function RecorridoVirtual() {
   return (
@@ -10,7 +11,7 @@ export function RecorridoVirtual() {
         label="Explora la casa"
         title="Recorrido virtual"
         subtitle="Navega por cada espacio como si estuvieras ahí. Haz clic en los puntos para desplazarte entre zonas."
-        image="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1920&q=85"
+        image={IMAGES.pageHero.recorridoVirtual}
       />
 
       <section className="section section--sand">

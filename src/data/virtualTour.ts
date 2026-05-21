@@ -1,3 +1,5 @@
+import { IMAGES } from "./images";
+
 export type TourHotspot = {
   id: string;
   label: string;
@@ -19,8 +21,7 @@ export const TOUR_SCENES: TourScene[] = [
     id: "entrada",
     name: "Entrada principal",
     description: "Bienvenido a Casa Castro Carrero. Propiedad cerrada y privada.",
-    image:
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=85",
+    image: IMAGES.virtualTour.entrada,
     hotspots: [
       { id: "e-pool", label: "Ir a la piscina", targetSceneId: "piscina", x: 72, y: 48 },
       { id: "e-sala", label: "Entrar a la sala", targetSceneId: "sala", x: 38, y: 55 },
@@ -30,8 +31,7 @@ export const TOUR_SCENES: TourScene[] = [
     id: "piscina",
     name: "Piscina privada",
     description: "Tu espacio de descanso bajo el sol de Melgar.",
-    image:
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=85",
+    image: IMAGES.virtualTour.piscina,
     hotspots: [
       { id: "p-bbq", label: "Zona BBQ", targetSceneId: "bbq", x: 18, y: 52 },
       { id: "p-anexo", label: "Anexo / habitaciones", targetSceneId: "habitacion", x: 78, y: 42 },
@@ -42,8 +42,7 @@ export const TOUR_SCENES: TourScene[] = [
     id: "sala",
     name: "Sala de estar",
     description: "Espacio para reunir a familia y amigos.",
-    image:
-      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1920&q=85",
+    image: IMAGES.virtualTour.sala,
     hotspots: [
       { id: "s-cocina", label: "Cocina", targetSceneId: "cocina", x: 82, y: 45 },
       { id: "s-entrada", label: "Salir al exterior", targetSceneId: "entrada", x: 12, y: 58 },
@@ -53,8 +52,7 @@ export const TOUR_SCENES: TourScene[] = [
     id: "cocina",
     name: "Cocina equipada",
     description: "Todo lo necesario para preparar tus comidas.",
-    image:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=85",
+    image: IMAGES.virtualTour.cocina,
     hotspots: [
       { id: "c-sala", label: "Volver a la sala", targetSceneId: "sala", x: 20, y: 50 },
     ],
@@ -63,8 +61,7 @@ export const TOUR_SCENES: TourScene[] = [
     id: "habitacion",
     name: "Habitación principal",
     description: "Confort con aire acondicionado y ropa de cama incluida.",
-    image:
-      "https://images.unsplash.com/photo-1615874959474-d609969a20ed?w=1920&q=85",
+    image: IMAGES.virtualTour.habitacion,
     hotspots: [
       { id: "h-pool", label: "Acceso a piscina", targetSceneId: "piscina", x: 75, y: 55 },
       { id: "h-bbq", label: "Zona BBQ", targetSceneId: "bbq", x: 15, y: 48 },
@@ -74,8 +71,7 @@ export const TOUR_SCENES: TourScene[] = [
     id: "bbq",
     name: "Zona BBQ",
     description: "Cenas inolvidables al aire libre.",
-    image:
-      "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=1920&q=85",
+    image: IMAGES.virtualTour.bbq,
     hotspots: [
       { id: "b-pool", label: "Piscina", targetSceneId: "piscina", x: 55, y: 35 },
       { id: "b-entrada", label: "Entrada", targetSceneId: "entrada", x: 22, y: 62 },
@@ -83,8 +79,8 @@ export const TOUR_SCENES: TourScene[] = [
   },
 ];
 
-export const TOUR_VIDEO_URL =
-  "https://assets.mixkit.co/videos/preview/mixkit-swimming-pool-in-a-luxury-resort-4068-large.mp4";
+export const TOUR_VIDEO_URL = IMAGES.video.tourUrl;
 
-export const TOUR_VIDEO_POSTER =
-  "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80";
+export const TOUR_VIDEO_FALLBACK = IMAGES.video.tourUrlFallback;
+
+export const TOUR_VIDEO_POSTER = IMAGES.video.tourPoster;

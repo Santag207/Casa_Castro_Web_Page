@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Shield, View } from "lucide-react";
 import { motion } from "framer-motion";
 import { AMENITIES_HOME, HERO_IMAGE, SITE } from "../data/site";
+import { IMAGES } from "../data/images";
 import { FadeIn, StaggerContainer, StaggerItem } from "../components/FadeIn";
 import { AmenityIcon } from "../components/AmenityIcon";
 import { VirtualTour } from "../components/VirtualTour";
@@ -160,7 +161,7 @@ export function Home() {
           <FadeIn className="feature-row">
             <div className="feature-row__image-wrap">
               <img
-                src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=900&q=80"
+                src={IMAGES.home.poolFeature}
                 alt="Piscina privada y zonas verdes"
                 className="feature-row__image"
                 loading="lazy"
@@ -179,7 +180,7 @@ export function Home() {
           <FadeIn className="feature-row feature-row--reverse">
             <div className="feature-row__image-wrap">
               <img
-                src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=900&q=80"
+                src={IMAGES.home.bbqFeature}
                 alt="Zona BBQ al aire libre"
                 className="feature-row__image"
                 loading="lazy"

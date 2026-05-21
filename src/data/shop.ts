@@ -1,3 +1,5 @@
+import { IMAGES } from "./images";
+
 export type ShopCategory = "experiencias" | "confort" | "gastronomia";
 
 export type ShopProduct = {
@@ -26,8 +28,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
     price: 85000,
     unit: "por estadía",
     category: "gastronomia",
-    image:
-      "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600&q=80",
+    image: IMAGES.shop.kitBbq,
     popular: true,
   },
   {
@@ -37,8 +38,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
     price: 50000,
     unit: "servicio",
     category: "experiencias",
-    image:
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80",
+    image: IMAGES.shop.checkoutTardio,
   },
   {
     id: "decoracion",
@@ -48,8 +48,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
     price: 120000,
     unit: "evento",
     category: "experiencias",
-    image:
-      "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&q=80",
+    image: IMAGES.shop.decoracion,
   },
   {
     id: "limpieza-extra",
@@ -58,8 +57,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
     price: 90000,
     unit: "servicio",
     category: "confort",
-    image:
-      "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&q=80",
+    image: IMAGES.shop.limpiezaExtra,
   },
 ];
 

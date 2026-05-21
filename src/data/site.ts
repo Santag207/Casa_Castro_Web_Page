@@ -1,3 +1,5 @@
+import { IMAGES } from "./images";
+
 export const SITE = {
   name: "Casa Castro Carrero",
   tagline: "Melgar · Tolima",
@@ -57,8 +59,7 @@ export const AMENITIES_FULL = [
     desc: "Refrescante piscina de uso exclusivo para los huéspedes.",
     category: "exterior" as const,
     featured: true,
-    image:
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80",
+    image: IMAGES.amenities.piscina,
   },
   {
     icon: "bbq",
@@ -66,8 +67,7 @@ export const AMENITIES_FULL = [
     desc: "Asador con mesa bajo techo para cenas al aire libre.",
     category: "exterior" as const,
     featured: true,
-    image:
-      "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&q=80",
+    image: IMAGES.amenities.bbq,
   },
   {
     icon: "private",
@@ -75,8 +75,7 @@ export const AMENITIES_FULL = [
     desc: "Propiedad totalmente cerrada y privada para tu tranquilidad.",
     category: "exterior" as const,
     featured: true,
-    image:
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
+    image: IMAGES.amenities.casaCerrada,
   },
   {
     icon: "kitchen",
@@ -84,8 +83,7 @@ export const AMENITIES_FULL = [
     desc: "Cocina completa con utensilios, nevera y estufa.",
     category: "interior" as const,
     featured: false,
-    image:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
+    image: IMAGES.amenities.cocina,
   },
   {
     icon: "living",
@@ -93,8 +91,7 @@ export const AMENITIES_FULL = [
     desc: "Sala cómoda para reunirse con la familia.",
     category: "interior" as const,
     featured: false,
-    image:
-      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80",
+    image: IMAGES.amenities.sala,
   },
   {
     icon: "garden",
@@ -102,8 +99,7 @@ export const AMENITIES_FULL = [
     desc: "Áreas exteriores con vegetación y palmeras.",
     category: "exterior" as const,
     featured: false,
-    image:
-      "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&q=80",
+    image: IMAGES.amenities.jardin,
   },
   {
     icon: "ac",
@@ -111,8 +107,7 @@ export const AMENITIES_FULL = [
     desc: "Todos los cuartos cuentan con aire acondicionado.",
     category: "confort" as const,
     featured: false,
-    image:
-      "https://images.unsplash.com/photo-1615874959474-d609969a20ed?w=800&q=80",
+    image: IMAGES.amenities.aireAcondicionado,
   },
   {
     icon: "wifi",
@@ -158,8 +153,7 @@ export const ROOMS = [
     beds: "1 cama doble + 8 camas sencillas",
     capacity: "10 pax",
     climate: "A/A",
-    image:
-      "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=900&q=80",
+    image: IMAGES.rooms.seccion1,
     features: [
       "Aire acondicionado",
       "Closet",
@@ -176,8 +170,7 @@ export const ROOMS = [
     beds: "1 cama doble + 5 camas sencillas",
     capacity: "7 pax",
     climate: "A/A",
-    image:
-      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=900&q=80",
+    image: IMAGES.rooms.seccion2,
     features: [
       "Aire acondicionado",
       "Acceso directo a piscina",
@@ -187,51 +180,9 @@ export const ROOMS = [
   },
 ] as const;
 
-export const GALLERY = [
-  {
-    src: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
-    alt: "Fachada de la casa vacacional",
-    category: "Exterior",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80",
-    alt: "Piscina privada con palmeras",
-    category: "Piscina",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80",
-    alt: "Sala de estar confortable",
-    category: "Interior",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
-    alt: "Cocina equipada",
-    category: "Cocina",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1615874959474-d609969a20ed?w=800&q=80",
-    alt: "Habitación principal",
-    category: "Habitación",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&q=80",
-    alt: "Zona BBQ al aire libre",
-    category: "BBQ",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&q=80",
-    alt: "Jardín y zonas verdes",
-    category: "Jardín",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80",
-    alt: "Vista nocturna de la propiedad",
-    category: "Noche",
-  },
-] as const;
+export const GALLERY = IMAGES.gallery;
 
-export const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1920&q=85";
+export const HERO_IMAGE = IMAGES.home.hero;
 
 export const SECTION_OPTIONS = [
   { value: "casa-completa", label: "Casa completa" },
