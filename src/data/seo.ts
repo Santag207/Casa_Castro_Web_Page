@@ -14,12 +14,12 @@ export const SEO_ROUTES: Record<string, SEOConfig> = {
   "/": {
     title: `Casa vacacional en Melgar con piscina privada | ${SITE.name}`,
     description:
-      "Alquila Casa Castro Carrero en Melgar, Tolima: casa vacacional cerrada con piscina, BBQ y capacidad para 13 personas. Reserva directa por WhatsApp sin intermediarios.",
+      "Alquila Casa Castro Carrero en Melgar, Tolima: casa vacacional cerrada con piscina, BBQ y capacidad para 17 personas. Reserva directa por WhatsApp sin intermediarios.",
     keywords: `${BASE_KEYWORDS}, casa con piscina privada, vacaciones en familia Melgar`,
     path: "/",
   },
   "/habitaciones": {
-    title: `Habitaciones y capacidad — 4 cuartos, 13 camas | ${SITE.name}`,
+    title: `Habitaciones y capacidad — 4 cuartos, 15 camas | ${SITE.name}`,
     description:
       "Conoce las 4 habitaciones con aire acondicionado: casa principal y anexo privado. Ideal para grupos y familias en Melgar, Tolima.",
     keywords: `${BASE_KEYWORDS}, habitaciones Melgar, casa para grupos`,
@@ -28,7 +28,7 @@ export const SEO_ROUTES: Record<string, SEOConfig> = {
   "/amenidades": {
     title: `Amenidades: piscina, BBQ, WiFi y más | ${SITE.name}`,
     description:
-      "Piscina privada, zona BBQ, cocina equipada, parqueadero y propiedad totalmente cerrada. Todo incluido en tu estadía en Melgar.",
+      "Piscina privada, zona BBQ, cocina equipada, parqueadero privado y propiedad totalmente cerrada. Todo incluido en tu estadía en Melgar.",
     keywords: `${BASE_KEYWORDS}, piscina privada Melgar, BBQ finca`,
     path: "/amenidades",
   },
@@ -49,7 +49,7 @@ export const SEO_ROUTES: Record<string, SEOConfig> = {
   "/tienda": {
     title: `Extras y experiencias para tu estadía | ${SITE.name}`,
     description:
-      "Agrega kits BBQ, bienvenida, check-out tardío y más a tu reserva. Carrito integrado y confirmación por WhatsApp.",
+      "Agrega kits BBQ, check-out tardío y más a tu reserva. Carrito integrado y confirmación por WhatsApp.",
     keywords: `${BASE_KEYWORDS}, extras alojamiento Melgar`,
     path: "/tienda",
   },

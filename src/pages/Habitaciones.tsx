@@ -10,7 +10,7 @@ export function Habitaciones() {
       <PageHero
         label="Alojamiento"
         title="Habitaciones"
-        subtitle="4 habitaciones distribuidas en dos secciones independientes — 13 camas en total, todas con aire acondicionado y ropa de cama incluida."
+        subtitle="4 habitaciones distribuidas en dos secciones independientes — 15 camas en total, todas con aire acondicionado, ropa de cama y toallas incluidas."
       />
 
       <section className="section">
