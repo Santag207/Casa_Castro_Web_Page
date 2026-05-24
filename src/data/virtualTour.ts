@@ -55,26 +55,39 @@ export const TOUR_SCENES: TourScene[] = [
     image: IMAGES.virtualTour.cocina,
     hotspots: [
       { id: "c-sala", label: "Volver a la sala", targetSceneId: "sala", x: 20, y: 50 },
+      { id: "c-entrada", label: "Regresar a entrada", targetSceneId: "entrada", x: 80, y: 80 },
     ],
   },
   {
     id: "habitacion",
-    name: "Habitación principal",
+    name: "Habitaciones",
     description: "Confort con aire acondicionado y ropa de cama incluida.",
     image: IMAGES.virtualTour.habitacion,
     hotspots: [
       { id: "h-pool", label: "Acceso a piscina", targetSceneId: "piscina", x: 75, y: 55 },
       { id: "h-bbq", label: "Zona BBQ", targetSceneId: "bbq", x: 15, y: 48 },
+      { id: "h-entrada", label: "Regresar a entrada", targetSceneId: "entrada", x: 45, y: 85 },
     ],
   },
   {
     id: "bbq",
     name: "Zona BBQ",
-    description: "Cenas inolvidables al aire libre.",
+    description: "Asador y área social al aire libre.",
     image: IMAGES.virtualTour.bbq,
     hotspots: [
       { id: "b-pool", label: "Piscina", targetSceneId: "piscina", x: 55, y: 35 },
       { id: "b-entrada", label: "Entrada", targetSceneId: "entrada", x: 22, y: 62 },
+      { id: "b-jardin", label: "Ir al jardín", targetSceneId: "jardin", x: 80, y: 50 },
+    ],
+  },
+  {
+    id: "jardin",
+    name: "Zonas Verdes",
+    description: "Espacios naturales para relajarse.",
+    image: IMAGES.gallery[6].src,
+    hotspots: [
+      { id: "j-bbq", label: "Volver a BBQ", targetSceneId: "bbq", x: 20, y: 50 },
+      { id: "j-entrada", label: "Regresar a entrada", targetSceneId: "entrada", x: 50, y: 80 },
     ],
   },
 ];

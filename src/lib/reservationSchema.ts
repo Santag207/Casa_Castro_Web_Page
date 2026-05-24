@@ -21,6 +21,7 @@ export const reservationSchema = z
     checkOut: z.string().min(1, "Selecciona la fecha de check-out"),
     adultos: z.coerce.number().int().min(1, "Mínimo 1 adulto").max(20),
     ninos: z.coerce.number().int().min(0).max(19),
+    ninosBajo8: z.coerce.number().int().min(0).max(19),
     seccion: z.enum(["casa-completa", "seccion-1", "seccion-2"]),
     mensaje: z.string().max(500).optional(),
   })
@@ -32,7 +33,7 @@ export const reservationSchema = z
     { message: "El check-out debe ser posterior al check-in", path: ["checkOut"] }
   )
   .refine(
-    (data) => data.adultos + data.ninos <= 20,
+    (data) => data.adultos + data.ninos + data.ninosBajo8 <= 20,
     {
       message: "La capacidad máxima de la casa es 20 personas",
       path: ["adultos"],

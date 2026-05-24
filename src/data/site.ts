@@ -2,7 +2,7 @@ import { IMAGES } from "./images";
 
 export const SITE = {
   name: "Casa Castro Carrero",
-  tagline: "Melgar · Tolima",
+  tagline: "Melgar · Tolima — ¡Si tenemos vecinos!",
   location: "Vía Melgar — Carmen de Apicalá, Tolima, Colombia",
   phone: "+57 314 271 0256",
   phoneRaw: "573142710256",
@@ -13,7 +13,7 @@ export const SITE = {
   baseGuests: 12,
   basePrice: 800000,
   extraPersonPrice: 40000,
-  cleaningFee: 60000,
+  cleaningFee: 70000,
 } as const;
 
 export const NAV_LINKS = [
@@ -64,7 +64,7 @@ export const AMENITIES_FULL = [
   {
     icon: "bbq",
     title: "Zona BBQ",
-    desc: "Asador con mesa bajo techo para cenas al aire libre.",
+    desc: "Asador que utiliza la mesa del comedor para mayor comodidad.",
     category: "exterior" as const,
     featured: true,
     image: IMAGES.amenities.bbq,
@@ -96,7 +96,7 @@ export const AMENITIES_FULL = [
   {
     icon: "garden",
     title: "Zonas Verdes",
-    desc: "Áreas exteriores con vegetación y palmeras.",
+    desc: "Áreas exteriores con vegetación.",
     category: "exterior" as const,
     featured: false,
     image: IMAGES.amenities.jardin,
@@ -149,16 +149,15 @@ export const ROOMS = [
     section: "Sección 1",
     title: "Casa principal",
     description:
-      "Una cama doble y habitaciones con literas perfectas para grupos grandes o familias numerosas.",
-    beds: "1 cama doble + 8 camas sencillas",
-    capacity: "10 pax",
+      "Una cama doble y cinco camarotes perfectos para grupos grandes o familias numerosas.",
+    beds: "1 cama doble y 5 camarotes",
+    capacity: "12 pax",
     climate: "A/A",
     image: IMAGES.rooms.seccion1,
     features: [
       "Aire acondicionado",
       "Closet",
       "Vista al jardín",
-      "Ventiladores",
     ],
   },
   {
@@ -166,9 +165,9 @@ export const ROOMS = [
     section: "Sección 2",
     title: "Anexo privado",
     description:
-      "Una cama doble y cinco camas sencillas — ideal para parejas o familias que buscan más independencia.",
-    beds: "1 cama doble + 5 camas sencillas",
-    capacity: "7 pax",
+      "Una cama doble, un camarote y una cama sencilla — ideal para parejas o familias que buscan más independencia.",
+    beds: "1 cama doble, un camarote y una cama sencilla",
+    capacity: "5 pax",
     climate: "A/A",
     image: IMAGES.rooms.seccion2,
     features: [

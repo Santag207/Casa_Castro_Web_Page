@@ -19,6 +19,7 @@ const defaultValues: ReservationInput = {
   checkOut: "",
   adultos: 2,
   ninos: 0,
+  ninosBajo8: 0,
   seccion: "casa-completa",
   mensaje: "",
 };
@@ -50,25 +51,31 @@ export function Reservar() {
     [form.checkIn, form.checkOut]
   );
 
-  const totalGuests = Number(form.adultos) + Number(form.ninos);
-  const extraGuestsCount = Math.max(0, totalGuests - SITE.baseGuests);
+  const payingGuests = Number(form.adultos) + Number(form.ninos);
+  const totalGuests = payingGuests + Number(form.ninosBajo8);
+  const extraGuestsCount = Math.max(0, payingGuests - SITE.baseGuests);
 
   const pricing = useMemo(() => {
     if (!nights || nights <= 0) return null;
 
     const baseTotal = nights * SITE.basePrice;
     const extraTotal = extraGuestsCount * SITE.extraPersonPrice * nights;
-    const cleaningFee = SITE.cleaningFee;
+
+    // Dynamic cleaning fee: 70k for up to 13, 90k for more than 13.
+    const cleaningFee = totalGuests > 13 ? 90000 : 70000;
+    const deposit = 200000;
+
     const reservationSubtotal = baseTotal + extraTotal + cleaningFee;
 
     return {
       baseTotal,
       extraTotal,
       cleaningFee,
+      deposit,
       reservationSubtotal,
       grandTotal: reservationSubtotal + cartSubtotal,
     };
-  }, [nights, extraGuestsCount, cartSubtotal]);
+  }, [nights, extraGuestsCount, totalGuests, cartSubtotal]);
 
   const sectionLabel =
     SECTION_OPTIONS.find((s) => s.value === form.seccion)?.label ?? "—";
@@ -223,7 +230,7 @@ export function Reservar() {
                     )}
                   </label>
                   <label htmlFor="ninos">
-                    Niños
+                    Niños (8+ años)
                     <input
                       id="ninos"
                       type="number"
@@ -232,6 +239,17 @@ export function Reservar() {
                       value={form.ninos}
                       onChange={(e) => update("ninos", e.target.value)}
                       className={errors.ninos ? "input--error" : ""}
+                    />
+                  </label>
+                  <label htmlFor="ninosBajo8">
+                    Niños (&lt; 8 años)
+                    <input
+                      id="ninosBajo8"
+                      type="number"
+                      min={0}
+                      max={SITE.maxGuests - 1}
+                      value={form.ninosBajo8}
+                      onChange={(e) => update("ninosBajo8", e.target.value)}
                     />
                   </label>
                   <label htmlFor="seccion">
@@ -280,6 +298,10 @@ export function Reservar() {
               </button>
 
               <p className="reserve-form__note">
+                <strong>Nota:</strong> Los niños menores de 8 años no pagan estadía.
+                Se requiere un depósito de $200.000 (reembolsable).
+              </p>
+              <p className="reserve-form__note">
                 Al enviar se abrirá WhatsApp con todos los datos prellenados. La
                 reserva se confirma una vez recibamos tu mensaje.
               </p>
@@ -308,7 +330,7 @@ export function Reservar() {
                 <div>
                   <dt>Huéspedes</dt>
                   <dd>
-                    {form.adultos} adultos · {form.ninos} niños
+                    {form.adultos} adultos · {Number(form.ninos) + Number(form.ninosBajo8)} niños
                   </dd>
                 </div>
                 <div>
@@ -336,6 +358,10 @@ export function Reservar() {
                     <li>
                       <span>Aseo obligatorio (único)</span>
                       <span>{formatCOP(pricing.cleaningFee)}</span>
+                    </li>
+                    <li>
+                      <span>Depósito reembolsable</span>
+                      <span>{formatCOP(pricing.deposit)}</span>
                     </li>
                     <li className="reserve-summary__subtotal">
                       <span>Subtotal estadía</span>
