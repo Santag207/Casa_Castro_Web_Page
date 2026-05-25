@@ -2,10 +2,10 @@ import { IMAGES } from "./images";
 
 export const SITE = {
   name: "Casa Castro Carrero",
-  tagline: "Melgar · Tolima — ¡Si tenemos vecinos!",
+  tagline: "Melgar · Tolima",
   location: "Vía Melgar — Carmen de Apicalá, Tolima, Colombia",
-  phone: "+57 314 271 0256",
-  phoneRaw: "573142710256",
+  phone: "+1 551 240 8511",
+  phoneRaw: "15512408511",
   email: "reservas@casacastrocarrero.com",
   maxGuests: 17,
   rooms: 4,

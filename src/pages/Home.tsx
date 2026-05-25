@@ -109,8 +109,8 @@ export function Home() {
         <FadeIn className="container privacy-banner">
           <Shield size={20} strokeWidth={1.5} />
           <p>
-            <strong>Sin vecinos.</strong> Espacio totalmente privado para tu
-            grupo o familia.
+            <strong>Espacio totalmente privado para tu
+            grupo o familia.</strong>
           </p>
         </FadeIn>
       </section>
