@@ -48,8 +48,8 @@ export const IMAGES = {
       category: "Exterior",
     },
     {
-      src: "/images/gallery/2-piscina.jpg", // Piscina privada con palmeras
-      alt: "Piscina privada con palmeras",
+      src: "/images/gallery/2-piscina.jpg", // Piscina privada
+      alt: "Piscina privada",
       category: "Piscina",
     },
     {

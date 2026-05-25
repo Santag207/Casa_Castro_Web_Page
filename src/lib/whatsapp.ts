@@ -48,36 +48,41 @@ export function buildReservationMessage(
   data: ReservationForm,
   cartLines?: CartLineWithProduct[]
 ): string {
-  const totalGuests = Number(data.adultos) + Number(data.ninos);
-  const extraGuestsCount = Math.max(0, totalGuests - SITE.baseGuests);
+  const payingGuests = Number(data.adultos) + Number(data.ninos);
+  const totalGuests = payingGuests + Number(data.ninosBajo8);
+
+  const extraGuestsCount = Math.max(0, payingGuests - SITE.baseGuests);
   const baseTotal = data.noches * SITE.basePrice;
   const extraTotal = extraGuestsCount * SITE.extraPersonPrice * data.noches;
-  const reservationSubtotal = baseTotal + extraTotal + SITE.cleaningFee;
+
+  // Cleaning fee logic: 70k for group of 12, 90k for group of more than 13.
+  // 13 guests will pay 70k as it is not "more than 13".
+  const cleaningFee = totalGuests > 13 ? 90000 : 70000;
+  const depositValue = 200000;
+
+  const reservationSubtotal = baseTotal + extraTotal + cleaningFee;
 
   const lines = [
     `🏡 *Nueva reserva — ${SITE.name}*`,
-    "",
     "👤 *Datos del huésped*",
-    `• Nombre: ${data.nombre}`,
-    `• Teléfono: ${data.telefono}`,
-    `• Correo: ${data.email}`,
-    "",
+    `* Nombre: ${data.nombre}`,
+    `* Teléfono: ${data.telefono}`,
+    `* Correo: ${data.email}`,
     "📅 *Fechas*",
-    `• Check-in: ${formatDate(data.checkIn)}`,
-    `• Check-out: ${formatDate(data.checkOut)}`,
-    `• Noches: ${data.noches}`,
-    "",
+    `* Check-in: ${formatDate(data.checkIn)}`,
+    `* Check-out: ${formatDate(data.checkOut)}`,
+    `* Noches: ${data.noches}`,
     "🛏️ *Estadía*",
-    `• Sección: ${sectionLabel(data.seccion)}`,
-    `• Adultos: ${data.adultos}`,
-    `• Niños: ${data.ninos}`,
-    `• Total huéspedes: ${totalGuests}`,
-    "",
+    `* Sección: ${sectionLabel(data.seccion)}`,
+    `* Adultos: ${data.adultos}`,
+    `* Niños: ${data.ninos}`,
+    data.ninosBajo8 > 0 ? `* Niños < 8 años: ${data.ninosBajo8}` : null,
+    `* Total huéspedes: ${totalGuests}`,
     "💰 *Desglose estimado*",
-    `• Estadía (${data.noches} n.): ${formatCOP(baseTotal)}`,
-    extraGuestsCount > 0 ? `• Extra (${extraGuestsCount} pax): ${formatCOP(extraTotal)}` : null,
-    `• Aseo (obligatorio): ${formatCOP(SITE.cleaningFee)}`,
-    `• *Subtotal estadía: ${formatCOP(reservationSubtotal)}*`,
+    `* Estadía (${data.noches} n.): ${formatCOP(baseTotal)}`,
+    extraGuestsCount > 0 ? `* Extra (${extraGuestsCount} pax): ${formatCOP(extraTotal)}` : null,
+    `* Aseo (obligatorio): ${formatCOP(cleaningFee)}`,
+    `* Subtotal estadía: ${formatCOP(reservationSubtotal)}`,
   ].filter(Boolean) as string[];
 
   let grandTotal = reservationSubtotal;
@@ -86,7 +91,7 @@ export function buildReservationMessage(
     lines.push("", "🛒 *Extras solicitados*");
     for (const l of cartLines) {
       lines.push(
-        `• ${l.product.name} × ${l.quantity} — ${formatCOP(l.product.price * l.quantity)}`
+        `* ${l.product.name} × ${l.quantity} — ${formatCOP(l.product.price * l.quantity)}`
       );
     }
     const sub = cartLines.reduce(
@@ -94,22 +99,18 @@ export function buildReservationMessage(
       0
     );
     grandTotal += sub;
-    lines.push(`• Subtotal extras: ${formatCOP(sub)}`);
-    lines.push("", `💵 *TOTAL ESTIMADO: ${formatCOP(grandTotal)}*`);
-  } else {
-    lines.push("", `💵 *TOTAL ESTIMADO: ${formatCOP(grandTotal)}*`);
+    lines.push(`* Subtotal extras: ${formatCOP(sub)}`);
   }
 
-  if (data.mensaje?.trim()) {
-    lines.push("", "💬 *Mensaje*", data.mensaje.trim());
-  }
+  lines.push("", `💵 *TOTAL ESTIMADO: ${formatCOP(grandTotal)}*`);
 
-  lines.push(
-    "",
-    "—",
-    "Enviado desde casacastrocarrero.com",
-    "Por favor confirmar disponibilidad y precio. ¡Gracias!"
-  );
+  const footerMessage = [
+    "💬 *Mensaje*",
+    data.mensaje?.trim() ? data.mensaje.trim() : "",
+    "Si son ninos menores de 8 años no pagan estadía , falta colocar depósito son 200.000 fijos que se devuelven 2 días después de la salida si tod está en orden , el aseo son 70.000 grupo de 12 personas y 90.000 grupo de más de 13 personas, el aseo es general no incluye lavado de loza ni ollas,",
+  ].filter(Boolean).join("\n");
+
+  lines.push("", footerMessage);
 
   return lines.join("\n");
 }
